@@ -16,15 +16,17 @@ fun main() {
     FirebaseApp.initializeApp(options)
 
     val message = Message.builder()
-        .putData("action", "LIKE")
-        .putData("content", """{
-          "userId": 1,
-          "userName": "Vasiliy",
-          "postId": 2,
-          "postAuthor": "Netology"
-        }""".trimIndent())
+        .putData("action", "NEW_POST")
+        .putData(
+            "content", """{
+            "postAuthor": "Anton",
+            "contentNewPost" : "Напоминаю, что обучение на модуле «Разработка приложений на Kotlin» (KT-44) было завершено. Техническое закрытие модуля будет осуществлено 30.08.2023. Это означает, что сдать решения практических заданий будет невозможно."
+        }""".trimMargin()
+        )
         .setToken(token)
         .build()
+
+
 
     FirebaseMessaging.getInstance().send(message)
 }
